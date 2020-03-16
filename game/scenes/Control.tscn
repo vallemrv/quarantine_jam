@@ -9,7 +9,7 @@
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( -2, 407, 799, 722 )
+region = Rect2( -4, 256, 804, 744 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -36,10 +36,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -348.5
-margin_top = -300.0
-margin_right = 348.5
-margin_bottom = 300.0
+margin_left = -401.0
+margin_top = -389.0
+margin_right = 402.0
+margin_bottom = 326.0
 __meta__ = {
 "_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ 409.196, 716.728, 503.687 ]
@@ -55,9 +55,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -398.5
+margin_left = -402.0
 margin_top = -397.0
-margin_right = 398.5
+margin_right = 402.0
 margin_bottom = 397.0
 texture = SubResource( 1 )
 __meta__ = {
@@ -67,10 +67,10 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -149.5
-margin_top = 71.0
-margin_right = 149.5
-margin_bottom = 148.0
+margin_left = -369.546
+margin_top = 607.986
+margin_right = -70.5455
+margin_bottom = 684.986
 custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
@@ -82,14 +82,14 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -143.5
-margin_top = -92.0
-margin_right = 143.5
-margin_bottom = 92.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -220.0
+margin_right = -18.0
+margin_bottom = -36.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
