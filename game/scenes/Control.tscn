@@ -23,8 +23,9 @@ font_data = ExtResource( 3 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1.07355
-margin_bottom = -1.07355
+margin_top = -3.0
+margin_right = 101.0
+margin_bottom = 204.0
 __meta__ = {
 "_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ 409.196, 716.728 ]
