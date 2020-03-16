@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://art/rollo_papel.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Virus_bad.tscn" type="PackedScene" id=3]
 [ext_resource path="res://code/Level_1.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Virus_float.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
@@ -31,12 +32,18 @@ points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
 } ]
 0/z_index = 0
 
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -768, 376, 0, 0, 0, 0, -712, 288, 0, 0, 0, 0, -112, 288, 0, 0, 0, 0, -16, 384 )
+}
+
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 3439.8, 53.7162 )
 
 [node name="Main" type="Node2D"]
 position = Vector2( -2.31633, -2.31635 )
 script = ExtResource( 4 )
+Virus = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -48,19 +55,33 @@ tile_data = PoolIntArray( 131058, 0, 0, 131059, 0, 0, 196594, 0, 0, 196595, 0, 0
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -148.516, 244.63 )
 
+[node name="position_virus" type="Path2D" parent="Player"]
+position = Vector2( 366.832, -634.314 )
+curve = SubResource( 4 )
+
+[node name="position_ram" type="PathFollow2D" parent="Player/position_virus"]
+position = Vector2( -664, 376 )
+rotation = 0.0198151
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 2778.57, 836.557 )
 shape = SubResource( 3 )
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
 [node name="transition" type="Tween" parent="."]
 
 [node name="Virus_bad" parent="." instance=ExtResource( 3 )]
-position = Vector2( 84.4003, 365.716 )
+position = Vector2( 368.4, 207.716 )
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="score" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="create_virus" type="Timer" parent="Timers"]
+one_shot = true
 [connection signal="die" from="Player" to="." method="_on_Player_die"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timers/score" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timers/create_virus" to="." method="_on_create_virus_timeout"]

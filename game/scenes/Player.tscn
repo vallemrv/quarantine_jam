@@ -7,7 +7,7 @@
 radius = 37.0033
 height = 57.5887
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "hurt"
 length = 0.6
 tracks/0/type = "bezier"
@@ -521,8 +521,7 @@ tracks/50/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 length = 0.6
 loop = true
 tracks/0/type = "bezier"
@@ -1036,7 +1035,7 @@ tracks/50/keys = {
 "times": PoolRealArray( 0, 0.6 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.6
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("sprite/skeleton/body:position:x")
@@ -1549,7 +1548,7 @@ tracks/50/keys = {
 "times": PoolRealArray( 0, 0.3, 0.6 )
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.5
 loop = true
 step = 0.001
@@ -2247,7 +2246,7 @@ rotation = -1.72076
 rest = Transform2D( -0.283407, -0.959, 0.959, -0.283407, 25.7437, -0.0657845 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 5 )
-anims/idle = SubResource( 2 )
-anims/jump = SubResource( 3 )
-anims/run = SubResource( 4 )
+anims/hurt = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/run = SubResource( 5 )
