@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://art/rollo_papel.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://scenes/Virus_bad.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/Music/Komiku - Tale on the Late - 12 We have to do something.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/geringa.tscn" type="PackedScene" id=7]
+[ext_resource path="res://art/Fondos/fondoprimero.png" type="Texture" id=8]
+[ext_resource path="res://art/Fondos/fondofinal.png" type="Texture" id=9]
+[ext_resource path="res://art/Fondos/fondo2.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
@@ -375,6 +378,35 @@ shape = SubResource( 3 )
 one_shot = true
 
 [node name="transition" type="Tween" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="layer_fondo" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -20.0438, -53.135 )
+motion_scale = Vector2( 0.001, 0.001 )
+
+[node name="finalfondo" type="Sprite" parent="ParallaxBackground/layer_fondo"]
+position = Vector2( -36.155, -87.7237 )
+scale = Vector2( 1.32905, 1.28937 )
+texture = ExtResource( 9 )
+
+[node name="layer_medio" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -2.31633, -2.31635 )
+motion_scale = Vector2( 0.003, 0.003 )
+
+[node name="fondo2" type="Sprite" parent="ParallaxBackground/layer_medio"]
+position = Vector2( -66.8691, -3.10995 )
+scale = Vector2( 1.2532, 1.2512 )
+texture = ExtResource( 10 )
+
+[node name="layer_delante" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.005, 0.005 )
+
+[node name="img_delante" type="Sprite" parent="ParallaxBackground/layer_delante"]
+position = Vector2( -27.4426, 4.77756 )
+scale = Vector2( 1.25464, 1.14558 )
+texture = ExtResource( 8 )
 [connection signal="die" from="Player" to="." method="_on_Player_die"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

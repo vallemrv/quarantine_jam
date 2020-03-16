@@ -16,8 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Quarintine_jam"
-run/main_scene="res://Scenes/Level_1_test.tscn"
+run/main_scene="res://Scenes/Level_1.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1080
+window/size/height=720
 
 [input]
 
