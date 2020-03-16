@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Komiku - Tale on the Late - 12 We have to do something.wav-fd8e7ca6d47df8307a24b8604de8de49.sample"
+
+[deps]
+
+source_file="res://art/Music/Komiku - Tale on the Late - 12 We have to do something.wav"
+dest_files=[ "res://.import/Komiku - Tale on the Late - 12 We have to do something.wav-fd8e7ca6d47df8307a24b8604de8de49.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
