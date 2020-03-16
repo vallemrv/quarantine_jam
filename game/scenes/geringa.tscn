@@ -10,6 +10,6 @@ region = Rect2( 2, 245, 259, 279 )
 [node name="geringa" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 2.7549, -0.688726 )
-scale = Vector2( 1.02127, 0.995063 )
+position = Vector2( 106.341, 109.489 )
+scale = Vector2( 0.221377, 0.205257 )
 texture = SubResource( 1 )
