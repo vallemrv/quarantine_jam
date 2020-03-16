@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal die
+
+
 onready var img = $sprite
 onready var animation = $AnimationPlayer
 
@@ -54,3 +57,8 @@ func _physics_process(delta):
 	_animation()
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	
+
+
+func player_die():
+	queue_free()
+	emit_signal("die")
