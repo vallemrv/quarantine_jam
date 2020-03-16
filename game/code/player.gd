@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal die
+signal take_damage
 
 
 onready var img = $sprite
@@ -9,11 +10,24 @@ onready var animation = $AnimationPlayer
 export var  GRAVITY = 1500
 export var  SPEED = 280
 export var  JUMP_FORCE = -600
+export var  LIVES = 3
+export var  HEALTH = 100
+
 
 var _jump_moment = 0;
 var _velocity = Vector2.ZERO
 var _can_double_jump = false
 var _is_jump = false
+var _health = HEALTH
+var _lives = LIVES
+
+func take_damage(damage):
+	_health -= damage
+	if _health > 0:
+		emit_signal("take_damage")
+	else:
+		emit_signal("die")
+	print(_health)
 
 func _ready():
 	_jump_moment = JUMP_FORCE

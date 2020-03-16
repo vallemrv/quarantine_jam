@@ -1,6 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://art/virus_brazos/4.png" type="Texture" id=1]
+[ext_resource path="res://code/virus_float.gd" type="Script" id=2]
 [ext_resource path="res://art/virus_brazos/2.png" type="Texture" id=3]
 [ext_resource path="res://art/virus_brazos/3.png" type="Texture" id=4]
 [ext_resource path="res://art/virus_brazos/1.png" type="Texture" id=5]
@@ -12,52 +13,10 @@
 [ext_resource path="res://art/virus_redondo/6.png" type="Texture" id=11]
 [ext_resource path="res://art/virus_redondo/7.png" type="Texture" id=12]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends KinematicBody2D
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18.3877, 16.6886 )
 
-onready var raycast = $RayCast2D
-
-export var GRAVITY = 1000
-export var SPEED = 100
-export var DAMAGE = 10
-
-var _just_touch = false
-var _first_ray = false
-var _velocity = Vector2.ZERO
-var _dir = 1
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	set_physics_process(false)
-
-func _physics_process(delta):
-	_velocity.y += GRAVITY * delta
-	_velocity.x = _dir * SPEED 
-	
-	if not raycast.is_colliding() and not _just_touch:
-		_dir *= -1
-		_just_touch = true
-		yield(get_tree().create_timer(0.5), \"timeout\")
-		_just_touch = false
-		
-	if is_on_wall() and not _just_touch:
-		_dir *= -1
-		_just_touch = true
-		yield(get_tree().create_timer(0.5), \"timeout\")
-		_just_touch = false
-	
-	_velocity = move_and_slide(_velocity, Vector2.UP)
-
-
-func _on_Area2D_body_entered(body):
-	if body.name == \"Player\":
-		body.take_damage(DAMAGE)
-"
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 33.1181, 22.9449 )
-
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ) ],
 "loop": true,
@@ -70,32 +29,40 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 31.407
+[sub_resource type="CircleShape2D" id=3]
+radius = 19.8454
 
-[node name="Virus_bad" type="KinematicBody2D"]
-collision_layer = 4
-script = SubResource( 1 )
+[node name="Virus_float" type="RigidBody2D"]
+position = Vector2( -78.9398, 0 )
+collision_layer = 32
+collision_mask = 2
+gravity_scale = 1.32
+script = ExtResource( 2 )
+
+[node name="time_life" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.45799, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.699585, -2.19267 )
-frames = SubResource( 3 )
-animation = "brazos"
+position = Vector2( -0.699585, -2.44861 )
+frames = SubResource( 2 )
+animation = "redondo"
+frame = 5
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-enabled = true
-
-[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
-process_parent = true
-physics_process_parent = true
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.64931, -1.99652 )
+scale = Vector2( 1.87674, 1.96354 )
+[connection signal="timeout" from="time_life" to="." method="_on_time_life_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
