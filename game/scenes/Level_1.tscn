@@ -8,7 +8,7 @@
 [ext_resource path="res://art/Music/Komiku - Tale on the Late - 12 We have to do something.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/geringa.tscn" type="PackedScene" id=7]
 [ext_resource path="res://art/Fondos/fondoprimero.png" type="Texture" id=8]
-[ext_resource path="res://art/Fondos/finalfondo.png" type="Texture" id=9]
+[ext_resource path="res://art/Fondos/fondofinal.png" type="Texture" id=9]
 [ext_resource path="res://art/Fondos/fondo2.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
