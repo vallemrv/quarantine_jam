@@ -52,7 +52,7 @@ shape = SubResource( 1 )
 position = Vector2( -0.699585, -2.44861 )
 frames = SubResource( 2 )
 animation = "redondo"
-frame = 5
+frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
