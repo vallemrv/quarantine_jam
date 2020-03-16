@@ -1,4 +1,6 @@
 extends KinematicBody2D
+onready var ray_cast = $RayCast
+
 
 export var GRAVITY = 1000
 export var SPEED = 150
@@ -14,7 +16,13 @@ func _ready():
 func _physics_process(delta):
 	_velocity.y += GRAVITY * delta
 	_velocity.x = _dir * SPEED 
+	if not ray_cast.is_colliding() and not _just_touch:
+		print("ray_cast")
+		
+		
 	if is_on_wall() and not _just_touch:
+		
+		print("choque")
 		_dir *= -1
 		_just_touch = true
 		yield(get_tree().create_timer(0.5), "timeout")

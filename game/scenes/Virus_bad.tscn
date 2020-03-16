@@ -39,7 +39,14 @@ position = Vector2( -1.45799, 0 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.699585, -2.44861 )
 frames = SubResource( 2 )
 animation = "brazos"
-frame = 3
+frame = 2
 playing = true
+
+[node name="RayCast" type="RayCast2D" parent="."]
+position = Vector2( -1.3992, 28.6835 )
+exclude_parent = false
+cast_to = Vector2( 0, 10 )
+collision_mask = 0
