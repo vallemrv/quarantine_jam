@@ -1,0 +1,45 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://art/virus_brazos/4.png" type="Texture" id=1]
+[ext_resource path="res://code/virus_bad.gd" type="Script" id=2]
+[ext_resource path="res://art/virus_brazos/2.png" type="Texture" id=3]
+[ext_resource path="res://art/virus_brazos/3.png" type="Texture" id=4]
+[ext_resource path="res://art/virus_brazos/1.png" type="Texture" id=5]
+[ext_resource path="res://art/virus_redondo/2.png" type="Texture" id=6]
+[ext_resource path="res://art/virus_redondo/1.png" type="Texture" id=7]
+[ext_resource path="res://art/virus_redondo/5.png" type="Texture" id=8]
+[ext_resource path="res://art/virus_redondo/3.png" type="Texture" id=9]
+[ext_resource path="res://art/virus_redondo/4.png" type="Texture" id=10]
+[ext_resource path="res://art/virus_redondo/6.png" type="Texture" id=11]
+[ext_resource path="res://art/virus_redondo/7.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.6941, 28.4011 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "redondo",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "brazos",
+"speed": 5.0
+} ]
+
+[node name="Virus_bad" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.45799, 0 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "brazos"
+frame = 3
+playing = true
