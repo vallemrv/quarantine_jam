@@ -12,9 +12,6 @@ var _dir = 1
 func _ready():
 	pass # Replace with function body.
 
-func _physics_process(delta):
-	pass
-
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		body.take_damage(DAMAGE)
@@ -23,8 +20,7 @@ func _on_Area2D_body_entered(body):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
-	print("caraculo")
-
+	
 
 func _on_time_life_timeout():
 	queue_free()
