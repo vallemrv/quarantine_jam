@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://art/awesomeness.wav" type="AudioStream" id=1]
-[ext_resource path="res://art/yeah.png" type="Texture" id=2]
+[ext_resource path="res://art/creditos.png" type="Texture" id=2]
 [ext_resource path="res://art/Fuentes/Happy-Camper-Regular.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 3 )
 
@@ -36,17 +36,16 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.00230566
+anchor_top = 1.00346
+anchor_right = 0.00230566
+anchor_bottom = 1.00346
 margin_left = 70.2168
 margin_top = -255.568
 margin_right = 437.217
 margin_bottom = -47.5682
-custom_fonts/normal_font = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_colors/selection_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 text = "Virus Attack 
 Irene - Artist
 Manuel - Programmer
