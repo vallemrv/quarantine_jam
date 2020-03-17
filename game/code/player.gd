@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 signal die
 signal take_damage
+signal health_modified
+signal score_modified
+signal life_modified
 
 
 onready var img = $sprite

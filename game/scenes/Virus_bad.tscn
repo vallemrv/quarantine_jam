@@ -1,16 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://art/virus_brazos/4.png" type="Texture" id=1]
-[ext_resource path="res://art/virus_brazos/2.png" type="Texture" id=3]
-[ext_resource path="res://art/virus_brazos/3.png" type="Texture" id=4]
-[ext_resource path="res://art/virus_brazos/1.png" type="Texture" id=5]
-[ext_resource path="res://art/virus_redondo/2.png" type="Texture" id=6]
-[ext_resource path="res://art/virus_redondo/1.png" type="Texture" id=7]
-[ext_resource path="res://art/virus_redondo/5.png" type="Texture" id=8]
-[ext_resource path="res://art/virus_redondo/3.png" type="Texture" id=9]
-[ext_resource path="res://art/virus_redondo/4.png" type="Texture" id=10]
-[ext_resource path="res://art/virus_redondo/6.png" type="Texture" id=11]
-[ext_resource path="res://art/virus_redondo/7.png" type="Texture" id=12]
+[ext_resource path="res://art/sprites/virus_brazos/2.png" type="Texture" id=1]
+[ext_resource path="res://art/sprites/virus_brazos/4.png" type="Texture" id=2]
+[ext_resource path="res://art/sprites/virus_brazos/3.png" type="Texture" id=3]
+[ext_resource path="res://art/sprites/virus_brazos/1.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
@@ -59,14 +52,9 @@ extents = Vector2( 33.1181, 22.9449 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "brazos",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "redondo",
 "speed": 5.0
 } ]
 
@@ -85,6 +73,7 @@ shape = SubResource( 2 )
 position = Vector2( -0.699585, -2.19267 )
 frames = SubResource( 3 )
 animation = "brazos"
+frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
