@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 signal die
 signal take_damage
-signal health_modified
 signal score_modified
 signal life_modified
 
@@ -23,35 +22,45 @@ var _can_double_jump = false
 var _is_jump = false
 var _health = HEALTH
 var _lives = LIVES
+var _is_hurt = false
 
+
+func respaw():
+	_health = HEALTH
+	$position_virus.player_respaw()
+	set_physics_process(true)
+	visible = true
+	
 func take_damage(damage):
 	_health -= damage
+	_is_hurt = true
 	if _health > 0:
-		emit_signal("take_damage")
+		emit_signal("take_damage", _health)
 	else:
-		emit_signal("die")
-	print(_health)
+		player_die()
+	
 
 func _ready():
 	_jump_moment = JUMP_FORCE
 	
 func _animation():
-	if is_on_floor() and _velocity.x == 0:
-		animation.play("idle")
-	elif is_on_floor() and _velocity.x != 0:
+	if is_on_floor() and _velocity.x != 0:
 		animation.play("run")
 	elif _is_jump:
 		animation.stop()
 		animation.play("jump")
 		_is_jump = false
+	elif _is_hurt:
+		animation.play("hurt")
+	elif is_on_floor() and _velocity.x == 0:
+		animation.play("idle")
 
 func get_input():
-
-	if Input.is_action_pressed("right_jam"):
+	if Input.is_action_pressed("right_jam") and not _is_hurt:
 		_velocity.x = SPEED
 		if img.get_scale().x < 0:
 			img.set_scale(img.get_scale()*Vector2(-1,1))
-	elif Input.is_action_pressed("left_jam"):
+	elif Input.is_action_pressed("left_jam") and not _is_hurt:
 		_velocity.x = -SPEED
 		if img.get_scale().x > 0:
 			img.set_scale(img.get_scale()*Vector2(-1,1))
@@ -75,7 +84,13 @@ func _physics_process(delta):
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	
 
-
 func player_die():
-	queue_free()
-	emit_signal("die")
+	set_physics_process(false)
+	visible = false
+	$position_virus.player_die()
+	emit_signal("die", _lives)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "hurt":
+		_is_hurt = false

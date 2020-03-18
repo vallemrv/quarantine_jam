@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/creditos.png-27cfe0fb90425ab21f95eb0ace2ff844.stex"
+path="res://.import/health.png-5788fb8f7a2c767d0784c06e61445182.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/creditos.png"
-dest_files=[ "res://.import/creditos.png-27cfe0fb90425ab21f95eb0ace2ff844.stex" ]
+source_file="res://art/sprites/health.png"
+dest_files=[ "res://.import/health.png-5788fb8f7a2c767d0784c06e61445182.stex" ]
 
 [params]
 
