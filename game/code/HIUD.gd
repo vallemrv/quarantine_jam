@@ -12,5 +12,13 @@ func update_health(health):
 	else:
 		bar_health.value = 0
 
+func update_lifes(lifes):
+	if lifes == 2:
+		$life3.visible = false
+	elif lifes == 1:
+		$life2.visible = false
+	elif lifes == 0:
+		$life1.visible = false
 
-
+func update_score(score):
+	$score_label.text = str(score)

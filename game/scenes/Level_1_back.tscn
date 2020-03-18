@@ -6,11 +6,12 @@
 [ext_resource path="res://code/Level_1.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Virus_bad.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/music/Komiku - Tale on the Late - 12 We have to do something.wav" type="AudioStream" id=6]
-[ext_resource path="res://scenes/Jeringa.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Vaccine.tscn" type="PackedScene" id=7]
 [ext_resource path="res://art/Fondos/fondoprimero.png" type="Texture" id=8]
 [ext_resource path="res://art/Fondos/fondofinal.png" type="Texture" id=9]
 [ext_resource path="res://art/Fondos/fondo2.png" type="Texture" id=10]
 [ext_resource path="res://scenes/HIUD.tscn" type="PackedScene" id=11]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )

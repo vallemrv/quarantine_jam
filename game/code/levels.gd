@@ -10,20 +10,15 @@ func _ready():
 
 func _on_bound_body_entered(body):
 	if body.name == "Player":
-		game_over()
+		body.player_die()
 
 func _on_Player_die(life):
-	if life > 0:
+	if life > -1:
+		HIUD.update_lifes(life)
 		time_respaw.start()
 	else:
 		game_over()
 
-
-func _on_Player_life_modified():
-	pass # Replace with function body.
-
-func _on_Player_score_modified():
-	pass # Replace with function body.
 
 
 func _on_Player_take_damage(health):
@@ -35,7 +30,7 @@ func game_over():
 	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$transition.start()
 	yield(get_tree().create_timer(.5), "timeout")
-	if get_tree().reload_current_scene() != OK:
+	if get_tree().change_scene("res://scenes/Game_over.tscn") != OK:
 			print_debug("An error occured when trying to reload the current scene at Level.gd.")
 
 
@@ -43,3 +38,8 @@ func _on_time_respaw_timeout():
 	Player.global_position = $respaw.global_position
 	Player.respaw()
 	HIUD.update_health(Player.HEALTH)
+
+
+func _on_Player_take_score(score):
+	HIUD.update_score(score)
+

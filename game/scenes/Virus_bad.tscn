@@ -1,63 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://art/sprites/virus_brazos/2.png" type="Texture" id=1]
 [ext_resource path="res://art/sprites/virus_brazos/4.png" type="Texture" id=2]
 [ext_resource path="res://art/sprites/virus_brazos/3.png" type="Texture" id=3]
 [ext_resource path="res://art/sprites/virus_brazos/1.png" type="Texture" id=4]
+[ext_resource path="res://code/virus_bad.gd" type="Script" id=5]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends KinematicBody2D
-
-onready var raycast = $RayCast2D
-onready var time_onshot = $time_onshot
-
-export var GRAVITY = 1000
-export var SPEED = 100
-export var DAMAGE = 10
-
-var _just_touch = false
-var _first_ray = false
-var _velocity = Vector2.ZERO
-var _dir = 1
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	set_physics_process(false)
-
-func _physics_process(delta):
-	_velocity.y += GRAVITY * delta
-	_velocity.x = _dir * SPEED 
-	
-	if not raycast.is_colliding() and not _just_touch:
-		_dir *= -1
-		_just_touch = true
-		time_onshot.start()
-		
-	if is_on_wall() and not _just_touch:
-		_dir *= -1
-		_just_touch = true
-		time_onshot.start()
-	
-	_velocity = move_and_slide(_velocity, Vector2.UP)
-
-
-func _on_Area2D_body_entered(body):
-	if body.name == \"Player\":
-		body.take_damage(DAMAGE)
-
-
-func _on_time_life_timeout():
-	queue_free()
-
-
-func _on_time_onshot_timeout():
-	_just_touch = false
-"
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33.1181, 22.9449 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": true,
@@ -65,28 +17,136 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=3]
 radius = 31.407
+
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.314993, 0.314993 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.699585, -2.19267 ), Vector2( -0.40601, -48.7731 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.699585, -2.19267 ), Vector2( -0.955521, -187.747 ), Vector2( -0.955521, -187.747 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -237.535 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [node name="Virus_bad" type="KinematicBody2D"]
 collision_layer = 4
-script = SubResource( 1 )
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.45799, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.699585, -2.19267 )
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "brazos"
-frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 4 )
+position = Vector2( 1.53561, -1.53561 )
+shape = SubResource( 3 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
@@ -103,6 +163,10 @@ autostart = true
 [node name="time_onshot" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 4 )
+anims/die = SubResource( 5 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="time_life" to="." method="_on_time_life_timeout"]
 [connection signal="timeout" from="time_onshot" to="." method="_on_time_onshot_timeout"]

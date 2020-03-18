@@ -11,12 +11,16 @@ _data = {
 position = Vector2( 408, -296 )
 curve = SubResource( 1 )
 script = ExtResource( 1 )
-time = 1
 
 [node name="position_ram" type="PathFollow2D" parent="."]
 position = Vector2( -768, 376 )
 rotation = -1.00408
 
-[node name="creator" type="Timer" parent="."]
+[node name="creator_vaccine" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
-[connection signal="timeout" from="creator" to="." method="_on_creator_timeout"]
+
+[node name="creator_virus" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="creator_vaccine" to="." method="_on_creator_vaccine_timeout"]
+[connection signal="timeout" from="creator_virus" to="." method="_on_creator_timeout"]

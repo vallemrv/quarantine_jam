@@ -22,8 +22,11 @@ func _on_Area2D_body_entered(body):
 		get_tree().root.call_deferred("add_child", v)
 		queue_free()
 	if body.name == "Player":
-		body.take_damage(DAMAGE)
-		queue_free()
+		if body.vulnerable:
+			body.take_damage(DAMAGE)
+			$Area2D/CollisionShape2D.call_deferred("disabled", true)
+			gravity_scale = 0
+			$AnimationPlayer.play("attack")
 
 
 func _on_VisibilityNotifier2D_screen_exited():
