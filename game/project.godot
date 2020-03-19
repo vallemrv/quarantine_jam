@@ -15,8 +15,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Test Quarantine"
-run/main_scene="res://scenes/Menu.tscn"
+config/name="Virus Attack"
+run/main_scene="res://scenes/1_menu.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -53,6 +53,10 @@ right_jam={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Assets"
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [rendering]
 

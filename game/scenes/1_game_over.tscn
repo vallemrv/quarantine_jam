@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://code/1_game_over.gd" type="Script" id=1]
+[ext_resource path="res://art/fuentes/snubnose DEMO.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://art/portadas/game_over.png" type="Texture" id=3]
+[ext_resource path="res://scenes/1_buttons.tscn" type="PackedScene" id=4]
+
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 84
+font_data = ExtResource( 2 )
+
+[node name="game_over" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="img_rect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -541.5
+margin_top = -360.0
+margin_right = 541.5
+margin_bottom = 360.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit" parent="img_rect" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 127.615
+margin_top = 130.454
+margin_right = 474.615
+margin_bottom = 208.454
+texto = "EXIT"
+
+[node name="play" parent="img_rect" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 127.615
+margin_top = 33.6708
+margin_right = 474.615
+margin_bottom = 111.671
+texto = "PLAY AGAIN"
+
+[node name="Label" type="Label" parent="img_rect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -156.5
+margin_top = -189.85
+margin_right = 156.5
+margin_bottom = -105.85
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="img_rect/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="img_rect/play" to="." method="_on_play_pressed"]

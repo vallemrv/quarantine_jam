@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://code/1_create_virus.gd" type="Script" id=1]
+[ext_resource path="res://scenes/1_virus_f.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/1_vaccine.tscn" type="PackedScene" id=3]
+
+
+
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -768, 376, 0, 0, 0, 0, -712, 288, 0, 0, 0, 0, -112, 288, 0, 0, 0, 0, -16, 384 )
+}
+
+[node name="position_virus" type="Path2D"]
+position = Vector2( 408, -296 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+Virus = ExtResource( 2 )
+Vaccine = ExtResource( 3 )
+
+[node name="position_ram" type="PathFollow2D" parent="."]
+position = Vector2( -768, 376 )
+rotation = -1.00408
+
+[node name="creator_vaccine" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="creator_virus" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="creator_vaccine" to="." method="_on_creator_vaccine_timeout"]
+[connection signal="timeout" from="creator_virus" to="." method="_on_creator_timeout"]
