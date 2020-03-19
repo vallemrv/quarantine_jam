@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://art/sprites/player.png" type="Texture" id=1]
 [ext_resource path="res://code/player.gd" type="Script" id=2]
 [ext_resource path="res://art/music/awesomeness.wav" type="AudioStream" id=3]
+[ext_resource path="res://art/Music/old-man-cough.wav" type="AudioStream" id=4]
 [ext_resource path="res://art/sprites/aura/protection.png" type="Texture" id=6]
 [ext_resource path="res://art/sprites/aura/protection_1.png" type="Texture" id=7]
 [ext_resource path="res://art/sprites/aura/protection_2.png" type="Texture" id=8]
@@ -2917,6 +2918,9 @@ rest = Transform2D( 0.955924, 0.293614, -0.293614, 0.955924, 30.7195, 0.89569 )
 position = Vector2( 25.7437, -0.0657845 )
 rotation = -1.42866
 rest = Transform2D( -0.283407, -0.959, 0.959, -0.283407, 25.7437, -0.0657845 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hurt = SubResource( 3 )

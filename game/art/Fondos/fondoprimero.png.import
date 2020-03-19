@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fondoprimero.png-774f4a5a6402199790dfb8217c78d3de.stex"
+path="res://.import/fondoprimero.png-5a3766fdd86cf69adec15a138f2f78d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/fondos/fondoprimero.png"
-dest_files=[ "res://.import/fondoprimero.png-774f4a5a6402199790dfb8217c78d3de.stex" ]
+source_file="res://art/Fondos/fondoprimero.png"
+dest_files=[ "res://.import/fondoprimero.png-5a3766fdd86cf69adec15a138f2f78d8.stex" ]
 
 [params]
 
