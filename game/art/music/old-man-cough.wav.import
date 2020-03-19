@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/old-man-cough.wav-4ee5c7c2feefd5b18bf2d92d23024716.sample"
+path="res://.import/old-man-cough.wav-bc83800258883746c5e4f820fb853f9d.sample"
 
 [deps]
 
-source_file="res://art/Music/old-man-cough.wav"
-dest_files=[ "res://.import/old-man-cough.wav-4ee5c7c2feefd5b18bf2d92d23024716.sample" ]
+source_file="res://art/music/old-man-cough.wav"
+dest_files=[ "res://.import/old-man-cough.wav-bc83800258883746c5e4f820fb853f9d.sample" ]
 
 [params]
 

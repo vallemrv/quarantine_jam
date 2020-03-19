@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/awesomeness.wav-bdf03947514fc3663ca13427eb2e8ec0.sample"
+path="res://.import/awesomeness.wav-cc8bb89e1a0b83a775007f9b1253d31f.sample"
 
 [deps]
 
-source_file="res://art/Music/awesomeness.wav"
-dest_files=[ "res://.import/awesomeness.wav-bdf03947514fc3663ca13427eb2e8ec0.sample" ]
+source_file="res://art/music/awesomeness.wav"
+dest_files=[ "res://.import/awesomeness.wav-cc8bb89e1a0b83a775007f9b1253d31f.sample" ]
 
 [params]
 
