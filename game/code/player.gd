@@ -3,6 +3,7 @@ extends KinematicBody2D
 signal die
 signal take_damage
 signal take_score
+signal take_roll
 
 
 onready var img = $sprite
@@ -44,7 +45,10 @@ func respaw():
 	_is_die = false
 	visible = true
 
-
+func take_roll(_score):
+	score += _score
+	emit_signal("take_roll", score)
+	
 func take_score(_score):
 	score += _score
 	emit_signal("take_score", score)
@@ -131,3 +135,7 @@ func _on_out_vulnerability_timeout():
 	aura.visible = false
 	aura.playing = false
 	
+
+
+func _on_AudioStreamPlayer2D_finished():
+	$AudioStreamPlayer2D.play()

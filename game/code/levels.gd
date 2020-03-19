@@ -3,10 +3,13 @@ extends Node2D
 onready var HIUD = $HIUD
 onready var time_respaw = $time_respaw
 onready var Player = $Player
+onready var count_asset = $count_asset
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	HIUD.update_health(100)
+	HIUD.update_info_roll($Asset.get_child_count())
 
 func _on_bound_body_entered(body):
 	if body.name == "Player":
@@ -42,4 +45,13 @@ func _on_time_respaw_timeout():
 
 func _on_Player_take_score(score):
 	HIUD.update_score(score)
+
+
+func _on_Player_take_roll(score):
+	HIUD.update_score(score)
+	count_asset.start()
+
+
+func _on_count_asset_timeout():
+	HIUD.update_info_roll($Asset.get_child_count())
 

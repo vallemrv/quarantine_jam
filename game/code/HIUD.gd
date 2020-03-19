@@ -21,4 +21,7 @@ func update_lifes(lifes):
 		$life1.visible = false
 
 func update_score(score):
-	$score_label.text = str(score)
+	$score_content/score_label.text = str(score)
+
+func update_info_roll(info):
+	$roll_info_conten/roll_info.text = str(info)
