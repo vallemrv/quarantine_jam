@@ -11,6 +11,12 @@ onready var animation = $AnimationPlayer
 onready var raycast = $sprite/RayCast2D
 onready var out_vulnerability = $out_vulnerability
 onready var aura = $aura
+onready var hurt_play = $sounds/hurt_effect
+onready var inmunity_effect = $sounds/imunity_effect
+onready var jump_effect = $sounds/jump_effect
+onready var hit_effect = $sounds/hit_effect
+
+
 
 export var  GRAVITY = 1500
 export var  SPEED = 280
@@ -37,6 +43,7 @@ func set_invulnerable():
 	aura.visible = true
 	aura.playing = true
 	vulnerable = false
+	inmunity_effect.play()
 	out_vulnerability.start()
 
 func respaw():
@@ -54,6 +61,7 @@ func take_score(_score):
 	emit_signal("take_score", score)
 		
 func take_damage(damage):
+	hurt_play.play()
 	if not _is_die:
 		_health -= damage
 		_is_hurt = true
@@ -70,6 +78,7 @@ func _ready():
 func _animation():
 	if _is_killer:
 		animation.play("killer")
+		hit_effect.play()
 	elif _is_jump:
 		animation.stop()
 		animation.play("jump")
@@ -98,6 +107,7 @@ func get_input():
 	if Input.is_action_just_pressed("up_jam") and (is_on_floor() or not _can_double_jump):
 		_velocity.y = _jump_moment
 		_is_jump = true
+		jump_effect.play()
 		if not _can_double_jump:
 			_can_double_jump = true
 		
@@ -138,4 +148,5 @@ func _on_out_vulnerability_timeout():
 
 
 func _on_AudioStreamPlayer2D_finished():
-	$AudioStreamPlayer2D.play()
+	if not _is_die:
+		$AudioStreamPlayer2D.play()

@@ -1,11 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://code/1_game_over.gd" type="Script" id=1]
 [ext_resource path="res://art/fuentes/snubnose DEMO.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://art/portadas/game_over.png" type="Texture" id=3]
 [ext_resource path="res://scenes/1_buttons.tscn" type="PackedScene" id=4]
-
-
+[ext_resource path="res://art/music/komiku.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 84
@@ -74,5 +73,9 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
 [connection signal="pressed" from="img_rect/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="img_rect/play" to="." method="_on_play_pressed"]

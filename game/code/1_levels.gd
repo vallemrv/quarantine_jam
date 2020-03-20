@@ -33,7 +33,7 @@ func game_over():
 	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$transition.start()
 	yield(get_tree().create_timer(.5), "timeout")
-	if get_tree().change_scene("res://scenes/game_over.tscn") != OK:
+	if get_tree().change_scene("res://scenes/1_game_over.tscn") != OK:
 			print_debug("An error occured when trying to reload the current scene at Level.gd.")
 
 
