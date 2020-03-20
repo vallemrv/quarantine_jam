@@ -52,7 +52,7 @@ margin_left = 127.615
 margin_top = 33.6708
 margin_right = 474.615
 margin_bottom = 111.671
-texto = "PLAY AGAIN"
+texto = "CONTINUE"
 
 [node name="Label" type="Label" parent="img_rect"]
 anchor_left = 0.5

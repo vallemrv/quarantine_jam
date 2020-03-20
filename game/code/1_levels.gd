@@ -11,7 +11,19 @@ var _can_refresh = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	HIUD.update_health(100)
+	if Global.level == 1:
+		Global.lives = Player.LIVES
+		Global.score = 0
+		Global.health = Player.HEALTH
+	else:
+		Player.lives = Global.lives
+		Player.health = Global.health
+		Player.score = Global.score
+		
+	HIUD.update_health(Global.health)
+	HIUD.update_lifes(Global.lives)
+	HIUD.update_score(Global.score)
+	HIUD.update_level(Global.level)
 	HIUD.update_info_roll($Asset.get_child_count())
 
 func _on_bound_body_entered(body):
@@ -22,6 +34,12 @@ func _on_Player_die(life):
 	if life > -1:
 		HIUD.update_lifes(life)
 		time_respaw.start()
+		$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.35,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$transition.start()
+		$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.35,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$transition.start()
 	else:
 		game_over()
 
@@ -62,7 +80,21 @@ func _on_Player_take_roll(score):
 
 
 func _on_count_asset_timeout():
-	HIUD.update_info_roll($Asset.get_child_count())
+	var asset = $Asset.get_child_count()
+	if asset > 0:
+		HIUD.update_info_roll(asset)
+	else:
+		Global.lives = Player.lives
+		Global.score = Player.score
+		Global.health = Player.health
+		Global.level += 1
+		$transition.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.35,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$transition.start()
+		yield(get_tree().create_timer(.5), "timeout")
+		if get_tree().change_scene(Global.get_next_level()) != OK:
+			print_debug("An error occured when trying to reload the current scene at Level.gd.")
+
 
 func _on_ration_movement_timeout():
 	_can_refresh = true

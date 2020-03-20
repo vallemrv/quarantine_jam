@@ -112,6 +112,7 @@ position = Vector2( 120.142, 118.912 )
 [node name="position_virus" parent="Player" instance=ExtResource( 3 )]
 position = Vector2( 629.912, -550.443 )
 time_virus = 2
+time_vaccine = 30
 
 [node name="Viruses" type="Node" parent="."]
 
@@ -169,52 +170,49 @@ position = Vector2( 127.128, 478.354 )
 [node name="Asset" type="Node2D" parent="."]
 
 [node name="Roll" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 559.594, -157.184 )
+position = Vector2( 495.112, -176.923 )
 
 [node name="Roll2" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 5710.14, -55.9393 )
+position = Vector2( 1296.78, -24.2567 )
 
 [node name="Roll3" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 2688.81, -100.598 )
+position = Vector2( 1295.62, -133.47 )
 
 [node name="Roll4" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 4391.65, 242.866 )
+position = Vector2( 1969.72, -72.3571 )
 
 [node name="Roll5" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 1583.41, -133.497 )
+position = Vector2( 1927.9, 128.642 )
 
 [node name="Roll6" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 5050.95, 193.331 )
+position = Vector2( 2211.85, -4.73779 )
 
 [node name="Roll7" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 2201.91, 71.7923 )
+position = Vector2( 2422.14, -68.6392 )
 
 [node name="Roll8" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 6764.96, 11.4937 )
+position = Vector2( 6152.35, 123.297 )
 
 [node name="Roll9" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 1680.79, -37.4318 )
+position = Vector2( 5767.78, 131.198 )
 
 [node name="Roll10" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 4391.65, 59.9488 )
+position = Vector2( 5471.97, -28.2072 )
 
 [node name="Roll11" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 2853.3, 42.8414 )
+position = Vector2( 5152.7, 71.4791 )
 
 [node name="Roll12" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 3983.71, 3.36273 )
+position = Vector2( 4913.83, 102.616 )
 
 [node name="Roll13" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 2194.01, -95.3339 )
+position = Vector2( 4399.13, 139.795 )
 
 [node name="Roll14" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 1784.75, 32.3138 )
+position = Vector2( 4401.46, 295.482 )
 
 [node name="Roll15" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 1287.32, -178.239 )
-
-[node name="Roll16" parent="Asset" instance=ExtResource( 12 )]
-position = Vector2( 1289.95, -80.8584 )
+position = Vector2( 4397.97, 450.007 )
 
 [node name="timers" type="Node2D" parent="."]
 

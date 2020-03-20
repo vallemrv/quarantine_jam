@@ -15,10 +15,13 @@ font_data = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="score_content" type="ColorRect" parent="."]
-margin_left = 52.4625
-margin_top = 17.8004
-margin_right = 189.463
-margin_bottom = 44.8004
+margin_left = 82.0
+margin_top = 15.0
+margin_right = 219.0
+margin_bottom = 45.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="score_label" type="Label" parent="score_content"]
 anchor_top = 0.5
@@ -37,11 +40,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="levels" type="ColorRect" parent="."]
+margin_left = 20.2877
+margin_top = 15.5044
+margin_right = 71.2877
+margin_bottom = 44.5044
+
+[node name="label_level" type="Label" parent="levels"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -1.00888
+margin_top = -11.4956
+margin_right = -1.00888
+margin_bottom = 12.5044
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="roll_info_conten" type="TextureRect" parent="."]
-margin_left = 224.275
-margin_top = 11.0998
-margin_right = 272.275
-margin_bottom = 48.0998
+margin_left = 225.275
+margin_top = 12.0998
+margin_right = 273.275
+margin_bottom = 49.0998
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6

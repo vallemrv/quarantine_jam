@@ -14,7 +14,10 @@ func _process(_delta):
 
 
 func _on_play_pressed():
-	_scene = "res://scenes/1_level01.tscn"
+	_scene = Global.get_next_level()
+	Global.score = 0
+	Global.lives = 3
+	Global.health = 100
 	make_transition()
 
 func _on_exit_pressed():

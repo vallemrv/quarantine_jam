@@ -19,6 +19,10 @@ config/name="Virus Attack"
 run/main_scene="res://scenes/1_menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://code/global.gd"
+
 [display]
 
 window/size/resizable=false

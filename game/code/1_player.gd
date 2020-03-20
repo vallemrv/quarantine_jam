@@ -25,17 +25,17 @@ export var  SPEED = 280
 export var  JUMP_FORCE = -600
 export var  LIVES = 3
 export var  HEALTH = 100
-export var VULNERABIlILTY = 10
+export var  VULNERABIlILTY = 10
 
 var score = 0
+var health = HEALTH
+var lives = LIVES
 var vulnerable = true
 
 var _jump_moment = 0;
 var _velocity = Vector2.ZERO
 var _can_double_jump = false
 var _is_jump = false
-var _health = HEALTH
-var _lives = LIVES
 var _is_hurt = false
 var _is_die = false
 var _is_killer = false
@@ -52,7 +52,7 @@ func set_invulnerable():
 	out_vulnerability.start()
 
 func respaw():
-	_health = HEALTH
+	health = HEALTH
 	$position_virus.player_respaw()
 	_is_die = false
 	visible = true
@@ -68,10 +68,10 @@ func take_score(_score):
 func take_damage(damage):
 	hurt_play.play()
 	if not _is_die:
-		_health -= damage
+		health -= damage
 		_is_hurt = true
-		if _health > -1:
-			emit_signal("take_damage", _health)
+		if health > -1:
+			emit_signal("take_damage", health)
 		else:
 			player_die()
 	
@@ -143,9 +143,9 @@ func _physics_process(delta):
 func player_die():
 	_is_die = true
 	visible = false
-	_lives -= 1
+	lives -= 1
 	$position_virus.player_die()
-	emit_signal("die", _lives)
+	emit_signal("die", lives)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
