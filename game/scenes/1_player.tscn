@@ -2743,7 +2743,6 @@ limit_left = -700
 limit_bottom = 600
 
 [node name="aura" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 7.40222, 12.2573 )
 scale = Vector2( 0.749238, 0.749238 )
 frames = SubResource( 2 )

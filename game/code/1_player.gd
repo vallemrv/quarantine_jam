@@ -105,7 +105,8 @@ func set_value_joystick(value):
 		
 func jump():
 	_joystick_jump_pressed = true
-	
+
+var time_jump = 0
 func get_input():
 	if _value_movement == "right_jam" or  Input.is_action_pressed("right_jam") and not _is_hurt :
 		_velocity.x = SPEED
@@ -118,16 +119,20 @@ func get_input():
 	else:
 		_velocity.x = 0
 		
-	if (_joystick_jump_pressed or Input.is_action_just_pressed("up_jam")) and (is_on_floor() or not _can_double_jump):
+	if (_joystick_jump_pressed or Input.is_action_just_pressed("up_jam")) and (is_on_floor() or _can_double_jump):
 		_velocity.y = _jump_moment
-		_is_jump = true
 		_joystick_jump_pressed = false
 		jump_effect.play()
-		if not _can_double_jump:
-			_can_double_jump = true
+		_is_jump = true
+		time_jump += 1
+		if not is_on_floor():
+			_can_double_jump = false
+		print(time_jump) 
 		
 	if is_on_floor():
-		_can_double_jump = false
+		_can_double_jump = true
+		time_jump = 0
+		print(time_jump)
 	
 	if raycast.is_colliding() and not _is_killer and not vulnerable:
 		_is_killer = true
@@ -144,7 +149,7 @@ func player_die():
 	_is_die = true
 	visible = false
 	lives -= 1
-	$position_virus.player_die()
+	$creators.player_die()
 	emit_signal("die", lives)
 
 

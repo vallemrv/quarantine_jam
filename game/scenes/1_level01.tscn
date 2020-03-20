@@ -109,7 +109,7 @@ tile_data = PoolIntArray( -327542, 2, 0, -196612, 0, 0, -262006, 1, 0, -65540, 1
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 120.142, 118.912 )
 
-[node name="position_virus" parent="Player" instance=ExtResource( 3 )]
+[node name="creators" parent="Player" instance=ExtResource( 3 )]
 position = Vector2( 629.912, -550.443 )
 time_virus = 2
 
