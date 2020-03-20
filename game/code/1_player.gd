@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+
+
 signal die
 signal take_damage
 signal take_score
@@ -37,6 +39,9 @@ var _lives = LIVES
 var _is_hurt = false
 var _is_die = false
 var _is_killer = false
+var _value_movement = ""
+var _value_jump = false
+var _joystick_jump_pressed = false
 
 
 func set_invulnerable():
@@ -78,7 +83,7 @@ func _ready():
 func _animation():
 	if _is_killer:
 		animation.play("killer")
-		hit_effect.play()
+		#hit_effect.play()
 	elif _is_jump:
 		animation.stop()
 		animation.play("jump")
@@ -90,23 +95,33 @@ func _animation():
 	elif is_on_floor() and _velocity.x == 0:
 		animation.play("idle")
 	
+func set_value_joystick(value):
+	if value.x > 0:
+		_value_movement = "right_jam"
+	elif value.x < 0:
+		_value_movement = "left_jam"
+	else:
+		_value_movement = ""
 		
-
+func jump():
+	_joystick_jump_pressed = true
+	
 func get_input():
-	if Input.is_action_pressed("right_jam") and not _is_hurt :
+	if _value_movement == "right_jam" or  Input.is_action_pressed("right_jam") and not _is_hurt :
 		_velocity.x = SPEED
 		if img.get_scale().x < 0:
 			img.set_scale(img.get_scale()*Vector2(-1,1))
-	elif Input.is_action_pressed("left_jam") and not _is_hurt :
+	elif  _value_movement == "left_jam" or Input.is_action_pressed("left_jam") and not _is_hurt :
 		_velocity.x = -SPEED
 		if img.get_scale().x > 0:
 			img.set_scale(img.get_scale()*Vector2(-1,1))
 	else:
 		_velocity.x = 0
 		
-	if Input.is_action_just_pressed("up_jam") and (is_on_floor() or not _can_double_jump):
+	if (_joystick_jump_pressed or Input.is_action_just_pressed("up_jam")) and (is_on_floor() or not _can_double_jump):
 		_velocity.y = _jump_moment
 		_is_jump = true
+		_joystick_jump_pressed = false
 		jump_effect.play()
 		if not _can_double_jump:
 			_can_double_jump = true
@@ -149,4 +164,4 @@ func _on_out_vulnerability_timeout():
 
 func _on_AudioStreamPlayer2D_finished():
 	if not _is_die:
-		$AudioStreamPlayer2D.play()
+		$sounds/background.play()

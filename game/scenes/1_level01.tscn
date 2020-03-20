@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://art/sprites/tiles_set/tiles_set.png" type="Texture" id=1]
 [ext_resource path="res://scenes/1_player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://art/fondos/fondo2.png" type="Texture" id=5]
 [ext_resource path="res://art/fondos/fondoprimero.png" type="Texture" id=6]
 [ext_resource path="res://scenes/1_hiud.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/joystick.tscn" type="PackedScene" id=8]
 [ext_resource path="res://code/1_levels.gd" type="Script" id=9]
 [ext_resource path="res://scenes/1_roll.tscn" type="PackedScene" id=12]
 
@@ -161,15 +162,10 @@ __meta__ = {
 
 [node name="HIUD" parent="." instance=ExtResource( 7 )]
 
+[node name="base_joystick" parent="HIUD" instance=ExtResource( 8 )]
+position = Vector2( 127.128, 478.354 )
+
 [node name="transition" type="Tween" parent="."]
-
-[node name="count_asset" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="time_respaw" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
 
 [node name="Asset" type="Node2D" parent="."]
 
@@ -217,10 +213,26 @@ position = Vector2( 4401.46, 295.482 )
 
 [node name="Roll15" parent="Asset" instance=ExtResource( 12 )]
 position = Vector2( 4397.97, 450.007 )
+
+[node name="timers" type="Node2D" parent="."]
+
+[node name="count_asset" type="Timer" parent="timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="time_respaw" type="Timer" parent="timers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="ration_movement" type="Timer" parent="timers"]
+wait_time = 0.5
+one_shot = true
 [connection signal="body_entered" from="bound" to="." method="_on_bound_body_entered"]
 [connection signal="die" from="Player" to="." method="_on_Player_die"]
 [connection signal="take_damage" from="Player" to="." method="_on_Player_take_damage"]
 [connection signal="take_roll" from="Player" to="." method="_on_Player_take_roll"]
 [connection signal="take_score" from="Player" to="." method="_on_Player_take_score"]
-[connection signal="timeout" from="count_asset" to="." method="_on_count_asset_timeout"]
-[connection signal="timeout" from="time_respaw" to="." method="_on_time_respaw_timeout"]
+[connection signal="pressed" from="HIUD/base_joystick" to="." method="_on_base_joystick_pressed"]
+[connection signal="timeout" from="timers/count_asset" to="." method="_on_count_asset_timeout"]
+[connection signal="timeout" from="timers/time_respaw" to="." method="_on_time_respaw_timeout"]
+[connection signal="timeout" from="timers/ration_movement" to="." method="_on_ration_movement_timeout"]

@@ -1,10 +1,13 @@
 extends Node2D
 
 onready var HIUD = $HIUD
-onready var time_respaw = $time_respaw
 onready var Player = $Player
-onready var count_asset = $count_asset
+onready var time_respaw = $timers/time_respaw
+onready var count_asset = $timers/count_asset
+onready var joystick = $HIUD/base_joystick/joystick
+onready var ration_movement = $timers/ration_movement
 
+var _can_refresh = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,7 +26,13 @@ func _on_Player_die(life):
 		game_over()
 
 
-
+func _process(delta):
+	var value_joystick = joystick.get_value()*delta
+	if _can_refresh or value_joystick == Vector2.ZERO:
+		_can_refresh = value_joystick == Vector2.ZERO
+		ration_movement.start()
+		Player.set_value_joystick(value_joystick)
+	
 func _on_Player_take_damage(health):
 	HIUD.update_health(health)
 
@@ -34,7 +43,7 @@ func game_over():
 	$transition.start()
 	yield(get_tree().create_timer(.5), "timeout")
 	if get_tree().change_scene("res://scenes/1_game_over.tscn") != OK:
-			print_debug("An error occured when trying to reload the current scene at Level.gd.")
+		print_debug("An error occured when trying to reload the current scene at Level.gd.")
 
 
 func _on_time_respaw_timeout():
@@ -55,3 +64,8 @@ func _on_Player_take_roll(score):
 func _on_count_asset_timeout():
 	HIUD.update_info_roll($Asset.get_child_count())
 
+func _on_ration_movement_timeout():
+	_can_refresh = true
+
+func _on_base_joystick_pressed():
+	Player.jump()
