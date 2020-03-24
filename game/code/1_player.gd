@@ -34,7 +34,7 @@ var vulnerable = true
 
 var _jump_moment = 0;
 var _velocity = Vector2.ZERO
-var _can_double_jump = false
+var _count_jump = 0
 var _is_jump = false
 var _is_hurt = false
 var _is_die = false
@@ -53,7 +53,7 @@ func set_invulnerable():
 
 func respaw():
 	health = HEALTH
-	$position_virus.player_respaw()
+	$creators.player_respaw()
 	_is_die = false
 	visible = true
 
@@ -95,18 +95,17 @@ func _animation():
 	elif is_on_floor() and _velocity.x == 0:
 		animation.play("idle")
 	
-func set_value_joystick(value):
-	if value.x > 0:
-		_value_movement = "right_jam"
-	elif value.x < 0:
-		_value_movement = "left_jam"
+func set_value_joystick(value, is_press):
+	
+	if is_press:
+		_value_movement = value
 	else:
 		_value_movement = ""
 		
 func jump():
 	_joystick_jump_pressed = true
 
-var time_jump = 0
+
 func get_input():
 	if _value_movement == "right_jam" or  Input.is_action_pressed("right_jam") and not _is_hurt :
 		_velocity.x = SPEED
@@ -119,21 +118,18 @@ func get_input():
 	else:
 		_velocity.x = 0
 		
-	if (_joystick_jump_pressed or Input.is_action_just_pressed("up_jam")) and (is_on_floor() or _can_double_jump):
+	if (_joystick_jump_pressed or Input.is_action_just_pressed("up_jam")) and _count_jump < 2:
 		_velocity.y = _jump_moment
 		_joystick_jump_pressed = false
 		jump_effect.play()
 		_is_jump = true
-		time_jump += 1
-		if not is_on_floor():
-			_can_double_jump = false
-		print(time_jump) 
+		_count_jump += 1
+#		
 		
-	if is_on_floor():
-		_can_double_jump = true
-		time_jump = 0
-		print(time_jump)
-	
+	elif is_on_floor():
+		_count_jump = 0
+		
+		
 	if raycast.is_colliding() and not _is_killer and not vulnerable:
 		_is_killer = true
 	

@@ -1,5 +1,6 @@
 extends TouchScreenButton
 
+signal movement
 
 var radius = Vector2(27,27)
 var boundary = 53
@@ -7,6 +8,7 @@ var boundary = 53
 var ongoing_drag = -1
 var return_accel = 20
 var threshold = 20
+
 
 func _process(delta):
 	if ongoing_drag == -1:
@@ -25,8 +27,11 @@ func _input(event):
 			if get_button_pos().length() > boundary:
 				position = (get_button_pos().normalized() * boundary) - radius 
 			ongoing_drag = event.get_index()
+			send_direction()
 	if event is InputEventScreenTouch and !event.is_pressed() and event.get_index() == ongoing_drag:
 		ongoing_drag = -1
+		emit_signal("movement", "", false)
+		
 
 
 func get_value():
@@ -34,3 +39,12 @@ func get_value():
 		return get_button_pos().normalized()
 	return Vector2.ZERO
 
+
+func send_direction():
+	if get_button_pos().length() > threshold:
+		var pos = get_button_pos().normalized()
+		if pos.x > 0:
+			emit_signal("movement", "right_jam", true)
+		elif pos.x < 0:
+			emit_signal("movement", "left_jam", true)
+			

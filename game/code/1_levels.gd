@@ -4,8 +4,8 @@ onready var HIUD = $HIUD
 onready var Player = $Player
 onready var time_respaw = $timers/time_respaw
 onready var count_asset = $timers/count_asset
-onready var joystick = $HIUD/base_joystick/joystick
 onready var ration_movement = $timers/ration_movement
+onready var joystick = $HIUD/joystick
 
 var _can_refresh = true
 
@@ -19,13 +19,22 @@ func _ready():
 		Player.lives = Global.lives
 		Player.health = Global.health
 		Player.score = Global.score
-		
+	
+	joystick.connect("pressed", self, "_on_joystick_pressed")
+	HIUD.show_joystick(Global.show_joystick)
 	HIUD.update_health(Global.health)
 	HIUD.update_lifes(Global.lives)
 	HIUD.update_score(Global.score)
 	HIUD.update_level(Global.level)
 	HIUD.update_info_roll($Asset.get_child_count())
-
+	
+# warning-ignore:unused_argument
+func _process(delta):
+	if Input.is_action_pressed("right_jam") and Global.show_joystick:
+		HIUD.show_joystick(false)
+		Global.show_joystick = false
+		
+		
 func _on_bound_body_entered(body):
 	if body.name == "Player":
 		body.player_die()
@@ -44,13 +53,6 @@ func _on_Player_die(life):
 		game_over()
 
 
-func _process(delta):
-	var value_joystick = joystick.get_value()*delta
-	if _can_refresh or value_joystick == Vector2.ZERO:
-		_can_refresh = value_joystick == Vector2.ZERO
-		ration_movement.start()
-		Player.set_value_joystick(value_joystick)
-	
 func _on_Player_take_damage(health):
 	HIUD.update_health(health)
 
@@ -101,3 +103,10 @@ func _on_ration_movement_timeout():
 
 func _on_base_joystick_pressed():
 	Player.jump()
+	
+func _on_joystick_pressed(type, is_press):
+	if (type == "jump"):
+		Player.jump()
+	else:
+		Player.set_value_joystick(type, is_press)
+		

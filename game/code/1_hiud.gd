@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 onready var bar_health =  $TextureProgress
+onready var joystick = $joystick
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -29,3 +31,6 @@ func update_level(level):
 
 func update_info_roll(info):
 	$roll_info_conten/roll_info.text = str(info)
+
+func show_joystick(show):
+	$joystick.visible = show

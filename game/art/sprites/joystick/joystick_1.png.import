@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/joystick_pressed.png-5f3a1ee8fdff795ce421d717c9706f13.stex"
+path="res://.import/joystick_1.png-f797661814e37b881b6233f892e954df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/joystick_pressed.png"
-dest_files=[ "res://.import/joystick_pressed.png-5f3a1ee8fdff795ce421d717c9706f13.stex" ]
+source_file="res://art/sprites/joystick/joystick_1.png"
+dest_files=[ "res://.import/joystick_1.png-f797661814e37b881b6233f892e954df.stex" ]
 
 [params]
 
